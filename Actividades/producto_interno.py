@@ -32,7 +32,7 @@ def check_othogonality(F, ip, a, b):
     
 check_othogonality(functions, inner_product, -sp.pi, sp.pi)
 
-# Definimos una funcion que calcula los coeficientes de 
+# Definimos una funcion que calcula el vector de coeficientes con la base ortogonal
 def coef_fourier(f, F, ip, a, b):
     coefficients = []
     for i in F:
