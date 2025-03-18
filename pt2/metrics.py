@@ -50,3 +50,12 @@ def residual_norm(y_true, y_fitted):
     """
     residuals = y_true - y_fitted
     return np.linalg.norm(residuals, 2)
+
+def compute_errors(y_true, y_pred):
+    """Computes RSS, MSE, RMSE, and R² for given predictions."""
+    rss = np.sum((y_true - y_pred) ** 2)
+    mse = rss / len(y_true)
+    rmse = np.sqrt(mse)
+    r2 = 1 - (rss / np.sum((y_true - np.mean(y_true)) ** 2))
+    
+    return {"RSS": rss, "MSE": mse, "RMSE": rmse, "R2": r2}

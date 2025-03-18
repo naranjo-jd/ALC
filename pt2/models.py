@@ -52,10 +52,14 @@ def gradient_descent(A, b, lr=0.01, tol=1e-6, max_iter=1000):
         numpy.ndarray: The approximate solution.
     """
     x = np.zeros(A.shape[1])
-    for _ in range(max_iter):
+    for i in range(max_iter):
         gradient = A.T @ (A @ x - b)
-        if np.linalg.norm(gradient) < tol:
+        grad_norm = np.linalg.norm(gradient)
+        
+        if grad_norm < tol:
             break
+
         x -= lr * gradient
+
     return x
 

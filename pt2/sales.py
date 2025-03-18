@@ -28,9 +28,6 @@ data = np.array([
     [22, 0.85, 2160]
 ])
 
-x = data[:, 1]
-y = data[:, 2]
-
 # ======= Linear Regression (y = ax + b) =======
 A1, b1 = models.generate_matrices(data[:, 1:], degree=1)  # Only Price & Sales columns
 
@@ -43,6 +40,9 @@ y_ls1 = A1 @ theta_ls1
 y_gd1 = A1 @ theta_gd1
 
 # ======= Plot Results =======
+x = data[:, 1]
+y = data[:, 2]
+
 plt.scatter(x, y, color='blue', label="Data (Price vs Sales)")
 plt.plot(x, y_ls1, color='red', label="Least Squares Fit")
 plt.plot(x, y_gd1, color='green', linestyle="--", label="Gradient Descent Fit")
@@ -63,14 +63,23 @@ theta_gd2 = models.gradient_descent(A2, b2, lr=0.01, max_iter=1000)
 y_ls2 = A2 @ theta_ls2
 y_gd2 = A2 @ theta_gd2
 
+# Sort x (prices) and re-order everything accordingly
+sorted_indices = np.argsort(x)  # Get sorted indices
+x_sorted = x[sorted_indices]    # Sort x values
+y_ls2_sorted = y_ls2[sorted_indices]  # Sort least squares predictions
+y_gd2_sorted = y_gd2[sorted_indices]  # Sort gradient descent predictions
+
+# Plot data and quadratic fits
 plt.scatter(x, y, color='blue', label="Data (Price vs Sales)")
-plt.plot(x, y_ls2, color='red', label="Least Squares Fit")
-plt.plot(x, y_gd2, color='green', linestyle="--", label="Gradient Descent Fit")
+plt.plot(x_sorted, y_ls2_sorted, color='red', label="Least Squares Fit")
+plt.plot(x_sorted, y_gd2_sorted, color='green', linestyle="--", label="Gradient Descent Fit")
 
 plt.xlabel("Price")
 plt.ylabel("Sales per week")
-plt.title("Linear Model: S = c1 + c2*P")
+plt.title("Quadratic Model: S = c1 + c2*P + c3*P^2")
 plt.legend()
 plt.show()
 
-
+print("Least Squares Solution:", theta_ls2)
+print("Gradient Descent Solution:", theta_gd2)
+print("Difference:", np.linalg.norm(theta_ls2 - theta_gd2))
