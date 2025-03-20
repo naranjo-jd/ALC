@@ -35,7 +35,7 @@ def least_squares(A, b):
     Returns:
         numpy.ndarray: The least squares solution.
     """
-    return np.linalg.pinv(A) @ b
+    return np.linalg.solve(A.T @ A, A.T @ b)
 
 def gradient_descent(A, b, lr=0.01, tol=1e-6, max_iter=1000):
     """
@@ -51,8 +51,12 @@ def gradient_descent(A, b, lr=0.01, tol=1e-6, max_iter=1000):
     Returns:
         numpy.ndarray: The approximate solution.
     """
-    x = np.zeros(A.shape[1])
+    
+    grad = 2*np.dot(A.T, E)
+    x = np.linalg.solve(A.T @ A, A.T @ b)
+    grad = gradient(x)
     for i in range(max_iter):
+
         gradient = A.T @ (A @ x - b)
         grad_norm = np.linalg.norm(gradient)
         
