@@ -1,0 +1,17 @@
+Variable,Tipo,Descripción
+paciente_id,Identificador,ID único del paciente (no predictivo)
+presion_arterial,Continua,Medición en mmHg con ruido médico
+frecuencia_cardiaca,Continua,Latidos por minuto (distribución gamma)
+historial_diabetes,Binaria,"0 = No, 1 = Sí (desbalanceada)"
+genero,Categórica,M (Masculino) o F (Femenino)
+dias_ultima_consulta,Discreta,Días desde última visita médica
+indice_masa_corporal,Continua,Relación peso/altura² (kg/m²)
+nivel_estres,Continua,Escala de estrés percibido (0-100)
+consumo_alcohol,Continua,Unidades semanales (distribución chi²)
+horas_sueno,Continua,Horas diarias de sueño promedio
+ratio_colesterol,Continua,Colesterol total/HDL
+edad,Discreta,Años cumplidos (18-90)
+actividad_fisica,Continua,Horas semanales de ejercicio
+nivel_glucosa,Continua,Medición en ayunas (mg/dL)
+proteina_c_reactiva,Continua,Marcador inflamatorio (mg/L)
+target,Binario,"1 = Alto riesgo, 0 = Bajo riesgo"
