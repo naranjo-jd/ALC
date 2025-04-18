@@ -7,6 +7,7 @@ df_train = pd.read_csv("data/train_df.csv")
 df_test = pd.read_csv("data/test_df.csv")
 
 # 2. Eliminar columnas no numéricas que no sirven como features
+df_train_ids = df_train["paciente_id"]
 df_train = df_train.drop(columns=["paciente_id"])
 df_test_ids = df_test["paciente_id"]  # guardar los IDs para el archivo final
 df_test = df_test.drop(columns=["paciente_id"])
