@@ -2,6 +2,8 @@ import pandas as pd
 import datos
 import log_model
 
+
+
 # Entrenamiento
 weights = log_model.train(datos.X_train, datos.y_train, lr=0.1, epochs=1000)
 
